@@ -1,0 +1,52 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <div class="form-group">
+        <label for="vehicleTypeId">Vehicle type:</label>
+        <h:selectOneMenu id="vehicleTypeId" styleClass="form-control" value="#{vehicleFormView.vehicleCommand.vehicleTypeId}">
+            <f:selectItems value="#{vehicleFormView.selectOneMenuVehicleTypes}" />
+        </h:selectOneMenu>
+    </div>
+
+    <div class="form-group">
+        <label for="vehicleMakeId">Vehicle make:</label>
+        <h:selectOneMenu id="vehicleMakeId" styleClass="form-control" value="#{vehicleFormView.vehicleCommand.vehicleMakeId}">
+            <f:selectItems value="#{vehicleFormView.selectOneMenuVehicleMakes}" />
+        </h:selectOneMenu>
+    </div>
+
+    <div class="form-group">
+        <label for="modelName">Model:</label>
+        <h:inputText id="modelName" styleClass="form-control" autocomplete="off" maxlength="25" value="#{vehicleFormView.vehicleCommand.modelName}" />
+    </div>
+
+
+    <div class="form-group">
+        <label for="licensePlates">License plates:</label>
+        <h:inputText id="licensePlates" styleClass="form-control" autocomplete="off" maxlength="25" value="#{vehicleFormView.vehicleCommand.licensePlates}" />
+    </div>
+
+    <div class="form-group">
+        <label for="pricePerDay">Price per day:</label>
+        <h:inputText id="pricePerDay" styleClass="form-control" autocomplete="off" maxlength="25" value="#{vehicleFormView.vehicleCommand.pricePerDay}" />
+    </div>
+
+    <div class="form-group">
+        <label for="minimumDriversAge">Drivers age:</label>
+        <h:inputText id="minimumDriversAge" styleClass="form-control" autocomplete="off" maxlength="25" value="#{vehicleFormView.vehicleCommand.minimumDriversAge}" />
+    </div>
+
+    <div class="form-group">
+        <label for="vehicleColorPicker">Vehicle color:</label>
+        <h:panelGrid id="vehicleColorPicker" columns="2" cellpadding="5" style="margin-left: 20px">
+            <p:colorPicker value="#{vehicleFormView.vehicleCommand.colorCode}" />
+        </h:panelGrid>
+    </div>
+
+</ui:composition>
+
+

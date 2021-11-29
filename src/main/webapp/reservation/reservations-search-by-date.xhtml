@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Reservations search by date"/>
+    <title>Reservations | Search by date</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"/>
+</h:head>
+
+<h:body>
+
+    <ui:include src="/layout/navbar.xhtml" />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Reservations - Search by date</h1>
+            </div>
+        </div>
+
+        <hr/>
+
+        <h:form id="search-reservations-by-date">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="pickupOrReturn">Time:</label>
+                        <p:selectOneRadio
+                                id="pickupOrReturn"
+                                value="#{reservationsSearchByDateView.command.pickupOrReturn}">
+                            <f:selectItem itemLabel="Pickup" itemValue="pickup"/>
+                            <f:selectItem itemLabel="Return" itemValue="return"/>
+                        </p:selectOneRadio>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timePeriodFrom">From:</label>
+                        <br/>
+                        <p:datePicker
+                                id="timePeriodFrom"
+                                value="#{reservationsSearchByDateView.command.timePeriodFrom}"
+                                pattern="dd.MM.yyyy HH:mm">
+                        </p:datePicker>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timePeriodTo">To:</label>
+                        <br/>
+                        <p:datePicker
+                                id="timePeriodTo"
+                                value="#{reservationsSearchByDateView.command.timePeriodTo}"
+                                pattern="dd.MM.yyyy HH:mm">
+                        </p:datePicker>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <h:commandButton
+                                id="submit-button"
+                                type="submit"
+                                value="Search"
+                                styleClass="btn btn-secondary"
+                                action="#{reservationsSearchByDateView.updateReservations}" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <p:dataTable var="reservation" value="#{reservationsSearchByDateView.reservations}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{reservation.id}" />
+                        </p:column>
+                        <p:column headerText="Pickup time">
+                            <h:outputText value="#{reservation.formattedPickupTime}" />
+                        </p:column>
+                        <p:column headerText="Return time">
+                            <h:outputText value="#{reservation.formattedReturnTime}" />
+                        </p:column>
+                        <p:column headerText="Name">
+                            <h:outputText value="#{reservation.vehicle.fullNameWithLicensePlates}" />
+                        </p:column>
+                        <p:column headerText="Customer">
+                            <h:outputText value="#{reservation.customer.fullName}" />
+                        </p:column>
+                        <p:column headerText="Total price">
+                            <h:outputText value="#{reservation.totalPrice}" />
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </h:form>
+
+
+    </div>
+
+    <ui:include src="/layout/footer.xhtml" />
+</h:body>
+
+</html>
